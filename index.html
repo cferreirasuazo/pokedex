@@ -1,0 +1,159 @@
+<!DOCTYPE>
+<html>
+   <head>
+       
+     <link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.min.css">
+       
+        <link rel="stylesheet" href="reset.css">
+       
+       
+       
+       <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet"> 
+       <link rel="stylesheet" type="text/css" href ="style.css" >
+       <script type="application/javascript" src="../JS/jsdoc.js"></script>
+       <script type="application/javascript" src="../JS/pokemons.js"></script>
+
+       <script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+       <!--Colocar estos 3-->
+       <script type="text/javascript" src = "../node_modules/ramda/dist/ramda.js" ></script>
+       <script src = "../node_modules/ramda/dist/ramda.min.js" ></script>
+       <script type="text/javascript" src="../JS/require.js">
+
+            const R = require('ramda');
+
+       </script>
+
+
+       <script>
+
+
+
+       $(document).ready(function(){
+
+         const main = (function(){
+          var poke = getPokemon();
+             
+               
+             
+          //COMPOSE AND CREATE POKEMON
+          const create = R.compose(setDisplay,createPoke);
+          //HIGH-ORDER FUNCTION
+          var bob = poke.map(create);
+
+          var screen_2 = createApped("#screen-2");
+          screen_2(bob);
+
+          $(".btn").bind("click",function(e){
+              
+            var id = $(this).attr("id");
+            const lol = sorter(id);
+            screen_2(bob.sort(lol()));
+              
+            });
+
+          $("#search-btn").click(function(){
+              try{
+                   (function(input){
+                return  input != ""
+                ?   $("#screenp").attr("src",buttonEvent.searchPokemon(input,poke).pic)
+                :alert("Search Empty");
+                
+            })($("#text-input").val());
+              
+              }catch(e)
+                  {
+                      alert("NOT FOUND");
+                  }
+              
+          });
+             
+          $(".row").mouseover(function(e){
+               
+           
+         var i = ( $(this).find("#id").text());
+          const getIDS = R.curry((limit,value) => value.id == limit);
+          var val = getIDS(i);
+          const getPic = x => x.pic;
+          var pics =  poke.filter(val).map(getPic);
+             
+          const createEvo = function(x)
+        {
+            var img = $("<img>").attr({
+               src: x    
+            });
+            console.log(img);   
+            return img;
+        }    
+        
+          
+    $(".evoPane").empty();
+      $(".evoPane").append(pics.map(createEvo));
+        
+    });       
+             
+             
+             
+             
+             
+             
+
+   })();//FINAL MAIN
+
+       });//FINAL DE READY
+
+       </script>
+
+
+   </head>
+
+<body>
+
+
+     <div id = "frame"  >
+         
+         <div id = "left">
+             
+                <form id = "form">
+                    <a>Search</a>
+                    <input id ="text-input" type="text">
+                     <button type="button" id = "search-btn">Search <i class="fa fa-search" aria-hidden="true"></i>
+ </button>
+                </form>
+          <div id= "screen-1" >
+
+             <img id="screenp" src = "../Icons/placeholder.png">
+          </div>
+        <h1 id = "evotitle">Evolutions</h1>
+        <div class = "evoPane">
+         
+         
+        </div>
+             
+             
+             
+          </div>
+         <div id = "right">
+
+
+        <div id = "buttons">
+
+          <button class = "btn" id = "name" >  <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>   Name</button>
+          <button class = "btn" id = "height" ><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Height</button>
+
+      </div>
+
+
+          <div id = "screen-2">
+          </div>
+
+
+          </div>
+
+       </div>
+
+
+
+</body>
+
+</html>
