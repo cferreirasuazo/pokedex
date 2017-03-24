@@ -1,8 +1,8 @@
-
+//change name to the file in index.html
 
 //CURRYING
 var sorter = function(id){
-    const sortByName =  (x,y) => $(x).find( "#" +  a ).text().localeCompare(   $(y).find( "#" +  a).text() );
+    const sortByName =  (x,y) => $(x).find( "#" +  a ).text().localeCompare($(y).find( "#" +  a).text() );
     const sortByHeight =  (x,y) => $(x).find( "#" +  a).text() - $(y).find( "#" +  a).text(); 
     return function(){return id == "name" ? sortByName:sortByHeight }
 }
