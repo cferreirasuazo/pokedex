@@ -1,38 +1,28 @@
 
 
-//CURRY
-var sorter = function(a){
-    const var1 =  (x,y) => $(x).find( "#" +  a ).text().localeCompare(   $(y).find( "#" +  a).text()      );
-    const var2 =  (x,y) => $(x).find( "#" +  a).text() - $(y).find( "#" +  a).text(); 
-
-  return function(){
-     return (a == "name")
-          ? var1
-          : var2
-          
-  }
-
+//CURRYING
+var sorter = function(id){
+    const sortByName =  (x,y) => $(x).find( "#" +  a ).text().localeCompare(   $(y).find( "#" +  a).text() );
+    const sortByHeight =  (x,y) => $(x).find( "#" +  a).text() - $(y).find( "#" +  a).text(); 
+    return function(){return id == "name" ? sortByName:sortByHeight }
 }
 
-const createApped = function(a)
+const addComponentC = function(selector)
 {
-  return function(arr){
-      $(a).append(arr);
-  }
+     return function(componet){ $(selector).append(componet); }
 }
+
 //ADDS A EVENT         /  MUTATION
-const setDisplay = x =>{
-        x.bind("mouseover" ,function(){
-          var img = $(this).find("img").attr("src");
-          var plc = $("#screenp").attr("src", img);
-
+const setMainImage = element =>{
+        element.bind("mouseover",function(){
+          var mainImage = $(this).find("img").attr("src");
+          var palceHolderImg = $("#screenp").attr("src", mainImage);//change name #screenp  :   screenImage
         });
-
-    return x;
+        return element;
 }
 
-//CREATES A POKEMON
-const createPoke = x =>{
+//CREATES A POKEMON//******************************************************************************
+const createPokemonRow = x =>{//change the name of the funcion in the html 
           var div      = $("<div></div>").attr({
               class:"row"
           });
@@ -41,8 +31,7 @@ const createPoke = x =>{
             $("<img>").attr({
                   class : "poke-icon",
                   src: x.pic
-            })
-          ).appendTo(ul);
+            })).appendTo(ul);
           var liName   = $("<li></li>").append(
 
            $("<a>" + x.name + "</a>").attr({
@@ -55,7 +44,6 @@ const createPoke = x =>{
            $("<a>" + x.type + "</a>").attr({
 
             })
-
           ).appendTo(ul);
     
           var liHeight = $("<li></li>").append(
@@ -71,35 +59,39 @@ const createPoke = x =>{
             })
 
           ).appendTo(ul);
-    
-    
-    
-    
+        
           return div;
         }
-       
-var buttonEvent = (function()
+
+const searchPokemon = function(name,array)///insert this code in index.html
+{ 
+	try{
+	      let found = array.filter(pokemon => pokemon.name.match(str));
+	      return found[0];
+          }
+}
+
+/*
+var buttonEvent = (function()/// change this function name in index.html
 {
 
-     console.log("Inside buttonEvent");
+
     return  {
 
      searchPokemon:function(str,arr)
         {
             try{
-                const getPokemon = x => x.name.match(str);
+                const getPokemon = 
                 let pokemon = arr.filter(getPokemon);
                 return pokemon[0]; 
             }catch(e)
                 {
                     alert("Pokemon not found");
-                }
-        
-
+                }        
         }
 
     }
 
 }());
-
+*/
 
