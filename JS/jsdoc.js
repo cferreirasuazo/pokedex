@@ -2,21 +2,21 @@
 
 //CURRYING
 var sorter = function(id){
-    const sortByName =  (x,y) => $(x).find( "#" +  a ).text().localeCompare($(y).find( "#" +  a).text() );
-    const sortByHeight =  (x,y) => $(x).find( "#" +  a).text() - $(y).find( "#" +  a).text(); 
+    const sortByName =  (x,y) => $(x).find( "#" +  id ).text().localeCompare($(y).find( "#" +  id).text() );
+    const sortByHeight =  (x,y) => $(x).find( "#" +  id).text() - $(y).find( "#" +  id).text(); 
     return function(){return id == "name" ? sortByName:sortByHeight }
 }
 
-const addComponentC = function(selector)
+const append = function(selector)
 {
      return function(componet){ $(selector).append(componet); }
 }
 
 //ADDS A EVENT         /  MUTATION
-const setMainImage = element =>{
+const setMainImage = element =>{//change image name
         element.bind("mouseover",function(){
           var mainImage = $(this).find("img").attr("src");
-          var palceHolderImg = $("#screenp").attr("src", mainImage);//change name #screenp  :   screenImage
+          var palceHolderImg = $("#screenImage").attr("src", mainImage);//change name #screenp  :   screenImage
         });
         return element;
 }
@@ -62,16 +62,19 @@ const createPokemonRow = x =>{//change the name of the funcion in the html
         
           return div;
         }
-
+/*
 const searchPokemon = function(name,array)///insert this code in index.html
 { 
 	try{
 	      let found = array.filter(pokemon => pokemon.name.match(str));
 	      return found[0];
-          }
+          }catch(e)
+                {
+                    alert("Pokemon not found");
+                } 
 }
+*/
 
-/*
 var buttonEvent = (function()/// change this function name in index.html
 {
 
@@ -81,7 +84,7 @@ var buttonEvent = (function()/// change this function name in index.html
      searchPokemon:function(str,arr)
         {
             try{
-                const getPokemon = 
+                const getPokemon = pokemon => pokemon.name.match(str);
                 let pokemon = arr.filter(getPokemon);
                 return pokemon[0]; 
             }catch(e)
@@ -93,5 +96,5 @@ var buttonEvent = (function()/// change this function name in index.html
     }
 
 }());
-*/
+
 
