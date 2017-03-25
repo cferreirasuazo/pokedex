@@ -1,0 +1,162 @@
+<!DOCTYPE>
+<html>
+   <head>
+       
+     <link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.min.css">
+       
+        <link rel="stylesheet" href="reset.css">
+       
+       
+       
+       <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet"> 
+       <link rel="stylesheet" type="text/css" href ="style.css" >
+       <script type="application/javascript" src="../JS/jsdoc.js"></script>
+       <script type="application/javascript" src="../JS/pokemons.js"></script>
+
+       <script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+       <!--Colocar estos 3-->
+       <script type="text/javascript" src = "../node_modules/ramda/dist/ramda.js" ></script>
+       <script src = "../node_modules/ramda/dist/ramda.min.js" ></script>
+       <script type="text/javascript" src="../JS/require.js">
+
+            const R = require('ramda');
+
+       </script>
+
+
+       <script>
+
+
+
+       $(document).ready(function(){
+
+         const main = (function(){
+          var poke = getPokemon();
+             
+               
+             
+          //COMPOSE AND CREATE POKEMON
+          const create = R.compose(setMainImage,createPokemonRow);
+          //HIGH-ORDER FUNCTION
+          var bob = poke.map(create);
+
+          var pokemonPanel = append("#pokemonPanel");
+          pokemonPanel(bob);
+
+          $(".btn").bind("click",function(e){
+              
+            var id = $(this).attr("id");
+            const lol = sorter(id);
+            pokemonPanel(bob.sort(lol()));
+              
+            });
+
+          $("#search-btn").click(function(){
+              try{
+                   (function(input){
+                return  input != ""
+                ?   $("#screenImage").attr("src",buttonEvent.searchPokemon(input,poke).pic)
+                :alert("Search Empty");
+                
+            })($("#text-input").val());
+              
+              }catch(e)
+                  {
+                      alert("NOT FOUND");
+                  }
+              
+          });
+             
+             
+             
+          $(".row").mouseover(function(e){
+               
+        
+         var i = ( $(this).find("#id").text());
+          const getIDS = R.curry((limit,value) => value.id == limit);
+          var val = getIDS(i);
+          const getPic = x => x.pic;
+          var pics =  poke.filter(val).map(getPic);
+              console.log(pics);
+             
+          const createEvo = function(x)
+        {
+            var img = $("<img>").attr({
+               src: x    
+            });
+              
+            return img;
+        }    
+        
+      $(".evolutionPane").empty();
+      $(".evolutionPane").append(pics.map(createEvo));  
+ 
+        
+    });       
+             
+             
+             
+             
+             
+             
+
+   })();//FINAL MAIN
+
+       });//FINAL DE READY
+
+       </script>
+
+
+   </head>
+
+<body>
+
+
+     <div id = "frame"  >
+         
+         <div id = "leftPanel">
+             
+                <form id = "form">
+                    <a>Search</a>
+                    <input id ="text-input" type="text">
+                     <button type="button" id = "search-btn">Search <i class="fa fa-search" aria-hidden="true"></i>
+ </button>
+                </form>
+          <div id= "screen-1" >
+
+             <img id="screenImage" src = "../Icons/placeholder.png">
+          </div>
+        <h1 id = "evolutionTitle">Evolutions</h1>
+        <div class = "evolutionPane">
+         
+         
+        </div>
+             
+             
+             
+          </div>
+         <div id = "rightPanel">
+
+
+        <div id = "buttons">
+
+          <button class = "btn" id = "name" >  <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>   Name</button>
+          <button class = "btn" id = "height" ><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Height</button>
+
+      </div>
+
+
+          <div id = "pokemonPanel"> 
+          </div>
+
+
+          </div>
+
+       </div>
+
+
+
+</body>
+
+</html>
