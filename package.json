@@ -1,0 +1,36 @@
+{
+  "name": "pokedexfp",
+  "version": "1.0.0",
+  "description": "Pokedex made using function programming",
+  "main": "index.js",
+  "dependencies": {
+    "ramda": "^0.23.0"
+  },
+  "dependecies":{
+	"ramda": "*"
+
+
+
+  },
+
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cferreirasuazo/pokedex.git"
+  },
+  "keywords": [
+    "pokemon",
+    "function",
+    "composition",
+    "ramda"
+  ],
+  "author": "Cristhian Ferreira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cferreirasuazo/pokedex/issues"
+  },
+  "homepage": "https://github.com/cferreirasuazo/pokedex#readme"
+}
