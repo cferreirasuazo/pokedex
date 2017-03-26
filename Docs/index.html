@@ -3,61 +3,48 @@
    <head>
        
        <!--<link rel="stylesheet" href="../font-awesome-4.6.3/css/font-awesome.min.css"> ******-->
-	<link rel = "Stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
-       
+        <link rel = "Stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
         <link rel="stylesheet" href="reset.css">
-       
-       
-       
-       <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet"> 
-       <link rel="stylesheet" type="text/css" href ="style.css" >
-       <script type="application/javascript" src="../JS/jsdoc.js"></script>
-       <script type="application/javascript" src="../JS/pokemons.js"></script>
-
-       <script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
+        <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href ="style.css" >
+        <script type="application/javascript" src="../JS/utilities.js"></script>
+        <script type="application/javascript" src="../JS/pokemonData.js"></script>
+        <script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
        <!--Colocar estos 3-->
-       <script type="text/javascript" src = "../node_modules/ramda/dist/ramda.js" ></script>
-       <script src = "../node_modules/ramda/dist/ramda.min.js" ></script>
-       <script type="text/javascript" src="../JS/require.js">
+        <script type="text/javascript" src = "../node_modules/ramda/dist/ramda.js" ></script>
+        <script src = "../node_modules/ramda/dist/ramda.min.js" ></script>
+        <script type="text/javascript" src="../JS/require.js">
 
             const R = require('ramda');
 
-       </script>
+        </script>
 
+        <script>
+            $(document).ready(function(){
 
-       <script>
-
-
-
-       $(document).ready(function(){
-
-         const main = (function(){
-          var poke = getPokemon();
-             
-               
-             
+          const main = (function(){
+          var pokemon = getPokemon();   
           //COMPOSE AND CREATE POKEMON
-          const create = R.compose(setMainImage,createPokemonRow);
+          const createRow = R.compose(setMainImage,createPokemonRow);
           //HIGH-ORDER FUNCTION
-          var bob = poke.map(create);
+          var row = pokemon.map(createRow);
 
           var pokemonPanel = append("#pokemonPanel");
-          pokemonPanel(bob);
+          pokemonPanel(row);
 
           $(".btn").bind("click",function(e){
               
-            var id = $(this).attr("id");
-            const lol = sorter(id);
-            pokemonPanel(bob.sort(lol()));
+            var $id = $(this).attr("id");
+            const sort = sorter($id);
+            pokemonPanel(row.sort(sort()));
               
             });
 
           $("#search-btn").click(function(){
               try{
-                   (function(input){
-                return  input != ""
-                ?   $("#screenImage").attr("src",buttonEvent.searchPokemon(input,poke).pic)
+                   (function(textInput){
+                return  textInput != ""
+                ?   $("#screenImage").attr("src",buttonEvent.searchPokemon(textInput,pokemon).pic)
                 :alert("Search Empty");
                 
             })($("#text-input").val());
@@ -70,28 +57,19 @@
           });
              
              
-             
-          $(".row").mouseover(function(e){
-               
+          $(".row").mouseover(function(e){  
         
-         var i = ( $(this).find("#id").text());
-          const getIDS = R.curry((limit,value) => value.id == limit);
-          var val = getIDS(i);
-          const getPic = x => x.pic;
-          var pics =  poke.filter(val).map(getPic);
-              console.log(pics);
-             
-          const createEvo = function(x)
-        {
-            var img = $("<img>").attr({
-               src: x    
-            });
+          const i = ( $(this).find("#id").text());
+          const getIDS = R.curry((value,idPokemon) => idPokemon.id == value);
+          const allEvolutions = getIDS(i);
+          const getPictures = x => x.pic;
+          const createImgs = element => $("<img>").attr({src:element});
               
-            return img;
-        }    
-        
-      $(".evolutionPane").empty();
-      $(".evolutionPane").append(pics.map(createEvo));  
+          var pictures =  pokemon.filter(allEvolutions).map(getPictures).map(createImgs);
+           
+          
+          $(".evolutionPane").empty();
+          $(".evolutionPane").append(pictures);  
  
         
     });       
@@ -105,47 +83,37 @@
    })();//FINAL MAIN
 
        });//FINAL DE READY
-
-       </script>
-
-
-   </head>
-
-<body>
+        </script>
 
 
-     <div id = "frame"  >
+ </head>
+
+    <body>
+         <div id = "frame"  >
          
          <div id = "leftPanel">
              
-                <form id = "form">
-                    <a>Search</a>
-                    <input id ="text-input" type="text">
-                     <button type="button" id = "search-btn">Search <i class="fa fa-search" aria-hidden="true"></i>
- </button>
-                </form>
-          <div id= "screen-1" >
-
+        <form id = "form">
+            <a>Search</a>
+            <input id ="text-input" type="text">
+            <button type="button" id = "search-btn">Search <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
+        
+        <div id= "screen-1" >
              <img id="screenImage" src = "../Icons/placeholder.png">
-          </div>
-        <h1 id = "evolutionTitle">Evolutions</h1>
-        <div class = "evolutionPane">
-         
-         
         </div>
-             
-             
-             
-          </div>
-         <div id = "rightPanel">
+        <h1 id = "evolutionTitle">Evolutions</h1>
+        <div class = "evolutionPane"></div>
+                   
+        </div>
+        
+        <div id = "rightPanel">
 
-
-        <div id = "buttons">
-
-          <button class = "btn" id = "name" >  <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>   Name</button>
+         <div id = "buttons">
+          <button class = "btn" id = "name" >  <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>Name</button>
           <button class = "btn" id = "height" ><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Height</button>
-
-      </div>
+         </div>
 
 
           <div id = "pokemonPanel"> 
@@ -154,10 +122,7 @@
 
           </div>
 
-       </div>
-
-
-
-</body>
+        </div> 
+    </body>
 
 </html>

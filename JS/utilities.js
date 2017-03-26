@@ -13,16 +13,16 @@ const append = function(selector)
 }
 
 //ADDS A EVENT         /  MUTATION
-const setMainImage = element =>{//change image name
+const setMainImage = function(element){//change image name
         element.bind("mouseover",function(){
-          var mainImage = $(this).find("img").attr("src");
-          var palceHolderImg = $("#screenImage").attr("src", mainImage);//change name #screenp  :   screenImage
+        var mainImage = $(this).find("img").attr("src");
+        var palceHolderImg = $("#screenImage").attr("src", mainImage);//change name #screenp  :   screenImage
         });
         return element;
 }
 
 //CREATES A POKEMON//******************************************************************************
-const createPokemonRow = x =>{//change the name of the funcion in the html 
+const createPokemonRow = function(x){
           var div      = $("<div></div>").attr({
               class:"row"
           });
@@ -62,39 +62,20 @@ const createPokemonRow = x =>{//change the name of the funcion in the html
         
           return div;
         }
-/*
-const searchPokemon = function(name,array)///insert this code in index.html
-{ 
-	try{
-	      let found = array.filter(pokemon => pokemon.name.match(str));
-	      return found[0];
-          }catch(e)
-                {
-                    alert("Pokemon not found");
-                } 
-}
-*/
 
-var buttonEvent = (function()/// change this function name in index.html
-{
-
-
+var buttonEvent = (function() {
     return  {
-
-     searchPokemon:function(str,arr)
-        {
-            try{
-                const getPokemon = pokemon => pokemon.name.match(str);
-                let pokemon = arr.filter(getPokemon);
-                return pokemon[0]; 
-            }catch(e)
-                {
-                    alert("Pokemon not found");
-                }        
+    searchPokemon:function(name,arr)
+    {
+       try {
+           const getPokemon = pokemon => pokemon.name.match(name);
+           let pokemon = arr.filter(getPokemon);
+           return pokemon[0]; 
+           }catch(e) {
+             alert("Pokemon not found");
+           }        
         }
-
-    }
-
+}
 }());
 
 
