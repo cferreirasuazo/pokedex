@@ -7,10 +7,6 @@
     "ramda": "^0.23.0",
     "normalize.css":"*"	 
   },
- 
-	
-	
-  
 
   "devDependencies": {},
   "scripts": {
