@@ -21,11 +21,15 @@
 
         <script>
             $(document).ready(function(){
-
+      
           const main = (function(){
           var pokemon = getPokemon();   
           //COMPOSE AND CREATE POKEMON
-          const createRow = R.compose(setMainImage,createPokemonRow);
+           var evolutionHandle = R.curry(showEvo);  
+           const showEvolution = evolutionHandle(pokemon);
+            
+              
+          const createRow = R.compose(showEvolution,setMainImage,createPokemonRow);
           //HIGH-ORDER FUNCTION
           var row = pokemon.map(createRow);
 
@@ -57,7 +61,7 @@
           });
              
              
-          $(".row").mouseover(function(e){  
+        /*  $(".row").mouseover(function(e){  
         
           const i = ( $(this).find("#id").text());
           const getIDS = R.curry((value,idPokemon) => idPokemon.id == value);
@@ -72,7 +76,7 @@
           $(".evolutionPane").append(pictures);  
  
         
-    });       
+    }); */      
              
              
              

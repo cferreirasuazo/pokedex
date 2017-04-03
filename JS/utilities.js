@@ -1,4 +1,3 @@
-//change name to the file in index.html
 
 //CURRYING
 var sorter = function(id){
@@ -13,10 +12,38 @@ const append = function(selector)
 }
 
 //ADDS A EVENT         /  MUTATION
-const setMainImage = function(element){//change image name
+
+       const showEvo = function(pokemon,e){  
+           e.bind("mouseover",function(){
+          const i = ( $(this).find("#id").text());
+          const getIDS = R.curry((value,idPokemon) => idPokemon.id == value);
+          const allEvolutions = getIDS(i);
+          const getPictures = x => x.pic;
+          const createImgs = element => $("<img>").attr({src:element});
+              
+          var pictures =  pokemon.filter(allEvolutions).map(getPictures).map(createImgs);
+           
+          
+          $(".evolutionPane").empty();
+          $(".evolutionPane").append(pictures);  
+ 
+               
+           });
+        
+           return e;
+          
+        
+    } 
+
+
+
+
+
+
+const setMainImage = function(element){
         element.bind("mouseover",function(){
         var mainImage = $(this).find("img").attr("src");
-        var palceHolderImg = $("#screenImage").attr("src", mainImage);//change name #screenp  :   screenImage
+        var palceHolderImg = $("#screenImage").attr("src", mainImage);
         });
         return element;
 }
