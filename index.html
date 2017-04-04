@@ -19,12 +19,13 @@
         </script>
 
         <script>
-            $(document).ready(function(){
+          $(document).ready(function(){
 
           const main = (function(){
-          var pokemon = getPokemon();   
+          var pokemon = getPokemon(); 
+          const eh = R.curry(evolutionHandle)(pokemon);
           //COMPOSE AND CREATE POKEMON
-          const createRow = R.compose(setMainImage,createPokemonRow);
+          const createRow = R.compose(eh,setMainImage,createPokemonRow);
           //HIGH-ORDER FUNCTION
           var row = pokemon.map(createRow);
 
@@ -41,7 +42,7 @@
 
           $("#search-btn").click(function(){
               try{
-                   (function(textInput){
+                (function(textInput){
                 return  textInput != ""
                 ?   $("#screenImage").attr("src",buttonEvent.searchPokemon(textInput,pokemon).pic)
                 :alert("Search Empty");
@@ -56,7 +57,7 @@
           });
              
              
-          $(".row").mouseover(function(e){  
+     /*     $(".row").mouseover(function(e){  
         
           const i = ( $(this).find("#id").text());
           const getIDS = R.curry((value,idPokemon) => idPokemon.id == value);
@@ -71,7 +72,7 @@
           $(".evolutionPane").append(pictures);  
  
         
-    });       
+    }); */      
              
              
              
