@@ -21,6 +21,11 @@
         <script>
           $(document).ready(function(){
 
+            $(".hell").click(function(){console.log("HELLL")});  
+              
+              
+              
+              
           const main = (function(){
           var pokemon = getPokemon(); 
           const eh = R.curry(evolutionHandle)(pokemon);
@@ -55,31 +60,7 @@
                   }
               
           });
-             
-             
-     /*     $(".row").mouseover(function(e){  
         
-          const i = ( $(this).find("#id").text());
-          const getIDS = R.curry((value,idPokemon) => idPokemon.id == value);
-          const allEvolutions = getIDS(i);
-          const getPictures = x => x.pic;
-          const createImgs = element => $("<img>").attr({src:element});
-              
-          var pictures =  pokemon.filter(allEvolutions).map(getPictures).map(createImgs);
-           
-          
-          $(".evolutionPane").empty();
-          $(".evolutionPane").append(pictures);  
- 
-        
-    }); */      
-             
-             
-             
-             
-             
-             
-
    })();//FINAL MAIN
 
        });//FINAL DE READY
@@ -113,6 +94,10 @@
          <div id = "buttons">
           <button class = "btn" id = "name" >  <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>Name</button>
           <button class = "btn" id = "height" ><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Height</button>
+          <button class = "hell">MMG</button>
+          
+          
+          
          </div>
 
 

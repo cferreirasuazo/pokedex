@@ -1,6 +1,7 @@
 //change name to the file in index.html
 
 //CURRYING
+
 var sorter = function(id){
     const sortByName =  (x,y) => $(x).find( "#" +  id ).text().localeCompare($(y).find( "#" +  id).text() );
     const sortByHeight =  (x,y) => $(x).find( "#" +  id).text() - $(y).find( "#" +  id).text(); 
@@ -22,7 +23,7 @@ const setMainImage = function(element){//change image name
 }
 
 //CREATES A POKEMON//******************************************************************************
-const createPokemonRow = function(x){
+const createPokemonRow = function(x) {
     
     var div  = $("<div></div>").attr({ class:"row" });
     var ul   = $("<ul></ul>").appendTo(div);
@@ -32,12 +33,12 @@ const createPokemonRow = function(x){
     var height = $("<a>" + x.height + "</a>").attr({id:"height" });
     var id = $("<a>" + x.id + "</a>").attr({ id:"id" });
     
-    var components = function(){
+    var arrayComponet = function() {
         var component = [...arguments];
         return component;
     }
     
-    var component = components(img,name,type,height,id);
+    var component = arrayComponet(img,name,type,height,id);
     
     var list = component.map(function(element){
        return $("<li></li>").append(element);
@@ -46,50 +47,22 @@ const createPokemonRow = function(x){
     ul.append(list);
     div.append(ul);
 
-         
-         /* var liPic = $("<li></li>").append(
-            $("<img>").attr({
-                  class : "poke-icon",
-                  src: x.pic
-            })).appendTo(ul);*/
-            
-         /*var liName = $("<li></li>").append(
-           $("<a>" + x.name + "</a>").attr({
-             id:"name"})
-          ).appendTo(ul);*/
-    
-         /*var liType = $("<li></li>").append(
-          $("<a>" + x.type + "</a>"));*/
-
-         /* var liHeight = $("<li></li>").append(
-           $("<a>" + x.height + "</a>").attr({
-            id:"height" })
-            ).appendTo(ul);*/
-    
-    
-  /*      var liId = $("<li></li>").append(
-           $("<a>" + x.id + "</a>").attr({ id:"id" })).appendTo(ul);*/
-
            return div;
         }
 
 
 
 
-const evolutionHandle = function(pokemon,row)
-{
-        row.bind("mouseover",function(){
-          const id = ( $(this).find("#id").text());
-          const getIDS = R.curry((id,idPokemon) => idPokemon.id == id);
-          const allEvolutions = getIDS(id);
-          const getPictures = x => x.pic;
-          const createImgs = src => $("<img>").attr({src:src});
-              
-          var pictures = pokemon.filter(allEvolutions).map(getPictures).map(createImgs);
-           
-          $(".evolutionPane").empty();
-          $(".evolutionPane").append(pictures); 
-        
+const evolutionHandle = function(pokemon,row) {
+    row.bind("mouseover",function() {
+    const id = ( $(this).find("#id").text());
+    const getIDS = R.curry((id,idPokemon) => idPokemon.id == id);
+    const allEvolutions = getIDS(id); //gets all ids 
+    const getPictures = x => x.pic;//Gets all the images 
+    const createImgs = src => $("<img>").attr({src:src});//create imgs with src               
+    var pictures = pokemon.filter(allEvolutions).map(getPictures).map(createImgs);
+    $(".evolutionPane").empty();
+    $(".evolutionPane").append(pictures);         
     
     });
     
@@ -97,7 +70,7 @@ const evolutionHandle = function(pokemon,row)
 }
 
 
-
+/***********************************************************************/
 
 var buttonEvent = (function() {
     return  {
