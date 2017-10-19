@@ -1,10 +1,10 @@
 <!DOCTYPE>
 <html>
    <head>
-       
+
         <link rel = "Stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
         <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
-        <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href ="CSS/style.css" >
         <script type="application/javascript" src="JS/utilities.js"></script>
         <script type="application/javascript" src="JS/pokemonData.js"></script>
@@ -21,13 +21,13 @@
         <script>
           $(document).ready(function(){
 
-            $(".hell").click(function(){console.log("HELLL")});  
-              
-              
-              
-              
+            $(".hell").click(function(){console.log("HELLL")});
+
+
+
+
           const main = (function(){
-          var pokemon = getPokemon(); 
+          var pokemon = getPokemon();
           const eh = R.curry(evolutionHandle)(pokemon);
           //COMPOSE AND CREATE POKEMON
           const createRow = R.compose(eh,setMainImage,createPokemonRow);
@@ -38,11 +38,11 @@
           pokemonPanel(row);
 
           $(".btn").bind("click",function(e){
-              
+
             var $id = $(this).attr("id");
             const sort = sorter($id);
             pokemonPanel(row.sort(sort()));
-              
+
             });
 
           $("#search-btn").click(function(){
@@ -51,16 +51,16 @@
                 return  textInput != ""
                 ?   $("#screenImage").attr("src",buttonEvent.searchPokemon(textInput,pokemon).pic)
                 :alert("Search Empty");
-                
+
             })($("#text-input").val());
-              
+
               }catch(e)
                   {
                       alert("NOT FOUND");
                   }
-              
+
           });
-        
+
    })();//FINAL MAIN
 
        });//FINAL DE READY
@@ -71,43 +71,43 @@
 
     <body>
          <div id = "frame"  >
-         
+
          <div id = "leftPanel">
-             
+
         <form id = "form">
             <a>Search</a>
             <input id ="text-input" type="text">
             <button type="button" id = "search-btn">Search <i class="fa fa-search" aria-hidden="true"></i>
             </button>
         </form>
-        
+
         <div id= "screen-1" >
              <img id="screenImage" src = "Icons/placeholder.png">
         </div>
         <h1 id = "evolutionTitle">Evolutions</h1>
         <div class = "evolutionPane"></div>
-                   
+
         </div>
-        
+
         <div id = "rightPanel">
 
          <div id = "buttons">
           <button class = "btn" id = "name" >  <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>Name</button>
           <button class = "btn" id = "height" ><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Height</button>
-          <button class = "hell">MMG</button>
-          
-          
-          
+      
+
+
+
          </div>
 
 
-          <div id = "pokemonPanel"> 
+          <div id = "pokemonPanel">
           </div>
 
 
           </div>
 
-        </div> 
+        </div>
     </body>
 
 </html>
