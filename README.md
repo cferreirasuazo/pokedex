@@ -1,13 +1,7 @@
 # pokedex
 Pokedex based in FP
 
-El siguiente repositorio es de un pokedex utilizando programacion funcional 
-(No es completamente funcional ya que muta el DOM);
-
-
-
-
-Librerias utilizar:
-Ramda
-Jquery 
+I created this repo for a talking that i had in March2 2017, to talk about Functional Programming.
+Im not a fan of Pokemon so, a friend gave me the idea of maka a pokedex for the talking. It's Almost 
+completely powered with Functiona Programmig.
 
