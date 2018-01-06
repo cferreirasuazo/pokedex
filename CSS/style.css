@@ -11,9 +11,7 @@
     height:235px ;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
- 
-    
+    text-align: center;  
 }
 .evolutionPane img{
     margin-top: 25px;
@@ -82,9 +80,7 @@ font-family: 'Nova Flat', cursive;
 
 .row li {
     float: left;
-    display: inline;
-    
-    
+    display: inline;   
 }
 .row li a {
     display: inline-block;
@@ -179,3 +175,6 @@ font-family: 'Nova Flat', cursive;
 
 }
 
+body{
+background-color:blue !important;
+}
