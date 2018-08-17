@@ -1,3 +1,15 @@
+/*Global Variables*/
+
+:root{
+    --btn-search-size:35px;
+}
+
+
+*{
+    margin:0px;
+    padding: 0px;
+}
+
 #evolutionTitle{
     height: 50px;
     font-size: 40px;
@@ -7,7 +19,7 @@
     margin-bottom: 0px;
 }
 .evolutionPane{
-    background-color: dimgray;
+    background-color: #e74c3c;
     height:235px ;
     margin-left: auto;
     margin-right: auto;
@@ -32,7 +44,6 @@ font-family: 'Nova Flat', cursive;
     
     width:inherit;
     height: 590px;
-    background-color: ;
     overflow-y: scroll;
 }
 #pokemonPanel::-webkit-scrollbar {
@@ -58,79 +69,61 @@ font-family: 'Nova Flat', cursive;
 .poke-icon{
     width: 65px;
     height: 65px;
-    padding: 10px;
 }
-#id{
-    display: none;
+
+.row {
+    margin:0px;
+    display: flex;
+    list-style: none;
+    align-items: center;  
+    padding-left: 24px;
+    border: 1px solid #000;
+    margin-bottom: 1px;
+}
+
+.row li{
+    margin-right: 26px;
+
 }
 
 
-.row{
-   border-bottom: 1px solid;        
-}
 
-.row ul {
-    list-style-type: none;
-    overflow: hidden;
-    background-color: #333;  /*ROW COLOR */
-    margin: 0 auto;
-    border: solid 0.0px;
-}
-
-.row li {
-    float: left;
-    display: inline;   
-}
-.row li a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    text-decoration: none;
-    width:100px;
-    height: 17px;
-    font-size: 20px;
-}
-.row ul:hover {
+.row:hover {
     background-color: #111;
 }
 
 /*-----------------------------------*/
 
-
 #frame{
-    background-color: #e74c3c;
-    width:1300px ;
-    padding:px;
+    background-color: #e74c3c; 
     overflow: hidden;
-    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding-left :10px;
+    padding-right: 10px;
+    
 }
 #leftPanel{
-    float: left;
+    
     background-color: firebrick;
-    width:650px; ;
 }
 #rightPanel{
-    float:right;
-    background-color;
-    width:650px;;
+    
     
 }
 #screen-1{
-    width: 550px;
-    height: 250px;
-    margin: auto;
+    
 }
 /*BUTTON AND FORM AREA*/
 .btn{
-    
+    border: 0;
+    border-radius: 5px; 
     margin-top: 15px;
     width: 115px;
     height: 35px;
     font-size: 17px;
     background-color:#95a5a6;
     color: aliceblue;
-    
 }
 #buttons {
     height:68px; 
@@ -138,24 +131,20 @@ font-family: 'Nova Flat', cursive;
     border-bottom: 1px solid;
 }
 
+
 .btn:hover{
-    background-color: #bdc3c7;
+    
 }
 
-#form{
+#form-search{
     width: inherit;    
     height: 68px;
     text-align: center;
     border-bottom: 1.5px solid;
 }
 
-#form a{
-    padding: 5px;
-    font-size: 20px;
-    display: inline-block;    
-}
 
-#form input{
+#form-search input{
     margin-top:  15px;
     vertical-align: bottom;
     height: 35px;    
@@ -165,14 +154,13 @@ font-family: 'Nova Flat', cursive;
     font-size: 20px;
 }
 
+
+
+
 #search-btn {
     font-size: 25px;
-    height: 35px;
-    width: 200px;
+    height: var(--btn-search-size);
+    width: var(--btn-search-size);
     border: 1px solid;
 
-}
-
-body{
-    background-color:blue !important;
 }
