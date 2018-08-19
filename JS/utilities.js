@@ -25,8 +25,9 @@ const setMainImage = function(element){//change image name
 //CREATES A POKEMON//******************************************************************************
 const createPokemonRow = function(x) {
     
-    var div  = $("<div></div>").attr({ class:"row" });
-    var ul   = $("<ul></ul>").appendTo(div);
+    //var div  = $("<div></div>")
+    var ul   = $("<ul></ul>")
+    ul.attr({ class:"row" });
     var img  = $("<img>").attr({ class : "poke-icon",src: x.pic});
     var name = $("<a>" + x.name + "</a>").attr({id:"name"});
     var type = $("<a>" + x.type + "</a>");    
@@ -41,17 +42,14 @@ const createPokemonRow = function(x) {
     var component = arrayComponet(img,name,type,height,id);
     
     var list = component.map(function(element){
-       return $("<li></li>").append(element);
+        return $("<li></li>").append(element);
     });
 
     ul.append(list);
-    div.append(ul);
+    
 
-           return div;
+        return ul;
         }
-
-
-
 
 const evolutionHandle = function(pokemon,row) {
     row.bind("mouseover",function() {
