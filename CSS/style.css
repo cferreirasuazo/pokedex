@@ -17,6 +17,7 @@
     border-bottom: 1px solid;
     border-top: 1px solid;
     margin-bottom: 0px;
+    text-align: center;
 }
 .evolutionPane{
     background-color: #e74c3c;
@@ -33,6 +34,7 @@
 }
 body{
 font-family: 'Nova Flat', cursive;
+background-color: #e74c3c; 
 
 }
 #screenImage{
@@ -43,8 +45,9 @@ font-family: 'Nova Flat', cursive;
 #pokemonPanel{
     
     width:inherit;
-    height: 590px;
+    height: 500px;
     overflow-y: scroll;
+    border: 1px solid black;
 }
 #pokemonPanel::-webkit-scrollbar {
     
@@ -71,6 +74,10 @@ font-family: 'Nova Flat', cursive;
     height: 65px;
 }
 
+#id{
+    display: none;
+}
+
 .row {
     margin:0px;
     display: flex;
@@ -79,11 +86,13 @@ font-family: 'Nova Flat', cursive;
     padding-left: 24px;
     border: 1px solid #000;
     margin-bottom: 1px;
+    justify-content: space-evenly;
 }
 
 .row li{
-    margin-right: 26px;
-
+    margin-right: 0px;
+    width: 100px;
+    
 }
 
 
@@ -95,12 +104,14 @@ font-family: 'Nova Flat', cursive;
 /*-----------------------------------*/
 
 #frame{
-    background-color: #e74c3c; 
+   
     overflow: hidden;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     padding-left :10px;
     padding-right: 10px;
+    height: 590px;
+    outline: 1px solid black;
     
 }
 #leftPanel{
